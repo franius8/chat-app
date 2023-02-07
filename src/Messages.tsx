@@ -4,7 +4,7 @@ import {auth, db} from "./firebase";
 import {MessageInterface} from "./d";
 import Message from "./Message";
 
-export default function Messages(props: { activeChat: string | null }) {
+export default function Messages(props: { activeChat: string | null, divRef: React.RefObject<HTMLDivElement> }) {
 
     const [messages, setMessages] = React.useState<MessageInterface[]>([]);
 
@@ -20,11 +20,22 @@ export default function Messages(props: { activeChat: string | null }) {
         return unsub;
     }, [props.activeChat])
 
+    let messageComponent;
+
+    if (messages.length === 0) {
+        messageComponent = <div className={"flex justify-center items-center"}>
+            <h1 className={"text-2xl text-gray-300"}>No Messages</h1>
+        </div>
+    } else {
+        messageComponent = messages.map((message) => (
+            <Message key={message.id}  message={message} />
+        ))
+    }
+
     return (
-        <div className={"m-2 text-white flex gap-4 flex-col justify-end overflow-auto flex-1 max-h-full px-4"}>
-            {messages.map((message) => (
-                <Message key={message.id}  message={message} />
-            ))}
+        <div className={"m-2 text-white flex gap-4 flex-col overflow-auto max-h-full px-4"}>
+            {messageComponent}
+            <div ref={props.divRef}></div>
         </div>
     )
 }

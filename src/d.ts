@@ -6,6 +6,7 @@ export interface MessageInterface {
     text: string;
     createdAt: Timestamp;
     sender: string;
+    fileId: string;
 }
 
 export interface UserInterface {

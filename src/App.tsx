@@ -37,8 +37,9 @@ function App() {
         content = (
             <>
                 <UsersList activeChat={activeChat} setActiveChat={activeChatSetter} />
-                    <Messages activeChat={activeChat}/>
-                    <div className={"self-auto bg-gray-800"} ref={divRef}>
+                    <div className={"flex-1"}></div>
+                    <Messages activeChat={activeChat} divRef={divRef}/>
+                    <div className={"self-auto bg-gray-800"}>
                         <Sender scrollToBottom={scrollToBottom} activeChat={activeChat} />
                     </div>
             </>
@@ -48,9 +49,10 @@ function App() {
     }
 
     return (
-        <div className="App bg-gray-800 w-screen h-screen flex items-center justify-center overflow-scroll">
+        <div className="App bg-gray-800 w-screen h-screen flex items-center justify-center">
             <div className={"min-w-[50%] flex flex-col h-screen"}>
-                <div className={"flex gap-2 items-center justify-center text-white mb-5 fixed translate-x-1/2 top-0 py-4 bg-gray-800"}>
+                <div className={"flex gap-2 items-center justify-center text-white mb-5 fixed translate-x-1/2 " +
+                    "top-0 p-4 bg-gray-800 rounded-lg"}>
                     <BsChatSquare className={"text-6xl"}/>
                     <h1 className={"font-bold"}>SimpleChat</h1>
                 </div>
