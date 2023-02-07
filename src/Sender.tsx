@@ -3,7 +3,7 @@ import React, {useRef} from "react";
 import {auth, db, storage} from "./firebase";
 import firebase from "firebase/compat";
 import Timestamp = firebase.firestore.Timestamp;
-import {BsImage} from "react-icons/all";
+import {BsFillTrashFill, BsImage} from "react-icons/all";
 import { ref, uploadBytes } from "firebase/storage";
 
 export default function Sender(props: { scrollToBottom: () => void, activeChat: string | null } ) {
@@ -18,7 +18,6 @@ export default function Sender(props: { scrollToBottom: () => void, activeChat: 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (hiddenFileInput.current) {
             hiddenFileInput.current.click();
-            console.log(hiddenFileInput.current)
         }
     }
 
@@ -51,6 +50,7 @@ export default function Sender(props: { scrollToBottom: () => void, activeChat: 
             sender: auth.currentUser!.uid,
             fileId: fileId
         });
+        setFile(null);
         props.scrollToBottom();
     }
 
@@ -59,7 +59,9 @@ export default function Sender(props: { scrollToBottom: () => void, activeChat: 
             <form onSubmit={send} className={"flex gap-2 justify-center items-center"}>
                 <input type={"text"} className={"rounded-lg px-4 py-1 w-4/5"} onChange={handleChange} value={text} />
                 <input type={"file"} className={"hidden"} accept={"image/*"} ref={hiddenFileInput} onChange={handleFileChange} />
-                <button type={"button"} className={"bg-white py-2 px-2 rounded-lg text-center"} onClick={handleClick}><BsImage/></button>
+                <button type={"button"} className={"bg-white py-2 px-2 rounded-lg text-center"} onClick={handleClick}>
+                    {file == null ? <BsImage/> : <BsFillTrashFill/>}
+                </button>
                 <button type={"submit"} className={"bg-white py-1 px-2 rounded-lg w-1/5 text-center"}>Send</button>
             </form>
         </div>

@@ -29,7 +29,8 @@ export default function Message(props: { message:MessageInterface }) {
     if (props.message.fileId) {
         return (
             <div className={"shadow shadow-gray-400 message border-2 border-white py-1 px-5 rounded-xl w-fit " + alignClass}>
-                <img src={fileUrl} alt={""} className={"rounded-lg m-2 max-w-xl"}/>
+                <img src={fileUrl} alt={""} className={"rounded-lg my-2 max-w-xl"}/>
+                <p className={"text-xl " + textAlign}>{props.message.text}</p>
                 <p className={"text-xs text-gray-300 " + textAlign}>{dateConverter.convertDate(props.message.createdAt.toDate())}</p>
             </div>
         )

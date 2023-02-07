@@ -19,6 +19,7 @@ function App() {
             setUser(user);
             setActiveChat(user!.uid)
         })
+        scrollToBottom()
     }, [])
 
     const scrollToBottom = () => {
@@ -28,8 +29,6 @@ function App() {
     const activeChatSetter = (id: string) => {
         setActiveChat(id)
     }
-
-
 
     let content;
 
@@ -51,7 +50,7 @@ function App() {
     return (
         <div className="App bg-gray-800 w-screen h-screen flex items-center justify-center">
             <div className={"min-w-[50%] flex flex-col h-screen"}>
-                <div className={"flex gap-2 items-center justify-center text-white mb-5 fixed translate-x-1/2 " +
+                <div className={"flex gap-2 items-center justify-center text-white mb-5 fixed left-5 " +
                     "top-0 p-4 bg-gray-800 rounded-lg"}>
                     <BsChatSquare className={"text-6xl"}/>
                     <h1 className={"font-bold"}>SimpleChat</h1>
